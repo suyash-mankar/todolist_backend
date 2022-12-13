@@ -30,3 +30,24 @@ module.exports.create = async function (req, res) {
     console.log("error in creating task", err);
   }
 };
+
+module.exports.modify = async function (req, res) {
+  try {
+    console.log(req.body.completed);
+    const task = await Task.findByIdAndUpdate(
+      req.params.id,
+      {
+        completed: req.body.completed,
+      },
+      // to return the updated task
+      { new: true }
+    );
+
+    res.status(200).json({
+      task: task,
+      message: "Task modified successfully",
+    });
+  } catch (err) {
+    console.log("error in creating task", err);
+  }
+};
