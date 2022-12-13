@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
 
-router.use("/todos", require("./todos"));
+router.use("/tasks", require("./task"));
 
 module.exports = router;
