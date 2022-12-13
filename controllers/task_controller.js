@@ -16,7 +16,6 @@ module.exports.view = async function (req, res) {
 
 module.exports.create = async function (req, res) {
   try {
-    console.log(req.body.title);
     const task = await Task.create({
       title: req.body.title,
       completed: false,
@@ -33,7 +32,6 @@ module.exports.create = async function (req, res) {
 
 module.exports.modify = async function (req, res) {
   try {
-    console.log(req.body.completed);
     const task = await Task.findByIdAndUpdate(
       req.params.id,
       {
@@ -46,6 +44,19 @@ module.exports.modify = async function (req, res) {
     res.status(200).json({
       task: task,
       message: "Task modified successfully",
+    });
+  } catch (err) {
+    console.log("error in creating task", err);
+  }
+};
+
+module.exports.delete = async function (req, res) {
+  try {
+    const task = await Task.findById(req.params.id);
+    task.remove();
+
+    res.status(200).json({
+      message: "Task deleted successfully",
     });
   } catch (err) {
     console.log("error in creating task", err);
