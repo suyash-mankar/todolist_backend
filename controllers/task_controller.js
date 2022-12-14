@@ -46,7 +46,7 @@ module.exports.modify = async function (req, res) {
       message: "Task modified successfully",
     });
   } catch (err) {
-    console.log("error in creating task", err);
+    console.log("error in modifying task", err);
   }
 };
 
@@ -59,6 +59,6 @@ module.exports.delete = async function (req, res) {
       message: "Task deleted successfully",
     });
   } catch (err) {
-    console.log("error in creating task", err);
+    console.log("error in deleting task", err);
   }
 };
